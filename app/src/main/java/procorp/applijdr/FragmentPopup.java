@@ -25,9 +25,14 @@ public class FragmentPopup extends DialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final EditText input = new EditText(getActivity());
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
         final String[] list = getTag().split(" ");
         input.setText(list[3]);
+        //Toast.makeText(getActivity().getBaseContext(), list[2], Toast.LENGTH_SHORT).show();
+        if(list[2].equals("FOR") || list[2].equals("DEX") || list[2].equals("CON") ||list[2].equals("INT") ||list[2].equals("SAG") ||list[2].equals("CHA")){
+            input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        }else{
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+        }
         final PersoManager persoManager = new PersoManager(getActivity().getBaseContext());
         persoManager.open();
         final Perso perso = persoManager.getPersoById(Integer.parseInt(list[1]));
