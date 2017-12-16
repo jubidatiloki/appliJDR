@@ -1,4 +1,4 @@
-package procorp.applijdr.listage;
+package procorp.applijdr;
 
 /**
  * Created by benja on 15/12/2017.

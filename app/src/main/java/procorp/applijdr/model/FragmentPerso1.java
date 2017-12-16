@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import procorp.applijdr.Couple;
 import procorp.applijdr.listage.*;
 import procorp.applijdr.FragmentPopup;
 import procorp.applijdr.R;
@@ -44,7 +45,7 @@ public class FragmentPerso1 extends Fragment {
         persoManager.open();
         perso = persoManager.getPersoById(1);
 
-        recyclerView = (RecyclerView)myView.findViewById(R.id.recycler_view);
+        recyclerView = myView.findViewById(R.id.recycler_view);
 
         persoAdapter = new PersoAdapter(coupleList);
 

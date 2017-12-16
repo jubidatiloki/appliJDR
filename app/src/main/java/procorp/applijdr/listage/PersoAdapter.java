@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import procorp.applijdr.Couple;
 import procorp.applijdr.R;
 
 /**
@@ -19,12 +20,12 @@ public class PersoAdapter extends RecyclerView.Adapter<PersoAdapter.MyViewHolder
     private List<Couple> couplesList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, libelle;
+        private TextView title, libelle;
 
-        public MyViewHolder(View view) {
+        private MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            libelle = (TextView) view.findViewById(R.id.libelle);
+            title =  view.findViewById(R.id.title);
+            libelle = view.findViewById(R.id.libelle);
         }
     }
 
