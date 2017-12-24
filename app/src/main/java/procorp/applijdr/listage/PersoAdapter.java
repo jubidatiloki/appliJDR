@@ -37,7 +37,7 @@ public class PersoAdapter extends RecyclerView.Adapter<PersoAdapter.MyViewHolder
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_perso1, parent, false);
+                .inflate(R.layout.layout_perso, parent, false);
 
         return new MyViewHolder(itemView);
     }

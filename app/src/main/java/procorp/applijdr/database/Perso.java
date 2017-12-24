@@ -8,13 +8,13 @@ import procorp.applijdr.Constante;
 
 public class Perso {
 
-    private int IdPerso;
-    private String Nom;
-    private String Classe;
-    private String Race;
-    private String Description;
-    private String Inventaire;
-    private String NotePerso;
+    private int idPerso;
+    private String nom;
+    private String classe;
+    private String race;
+    private String description;
+    private String inventaire;
+    private String notePerso;
     private int niveau;
     private int defense;
     private int initiative;
@@ -25,16 +25,17 @@ public class Perso {
     private int SAG;
     private int CHA;
 
+
     public Perso(){}
 
     public Perso(int idPerso){
-        IdPerso = idPerso;
-        Nom = Constante.NOM_DEFAUT;
-        Classe = Constante.CLASSE_DEFAUT;
-        Race = Constante.RACE_DEFAUT;
-        Description = Constante.DESCRIPTION_DEFAUT;
-        Inventaire = Constante.INVENTAIRE_DEFAUT;
-        NotePerso = Constante.NOTEPERSO_DEFAUT;
+        this.idPerso = idPerso;
+        this.nom = Constante.NOM_DEFAUT;
+        this.classe = Constante.CLASSE_DEFAUT;
+        this.race = Constante.RACE_DEFAUT;
+        this.description = Constante.DESCRIPTION_DEFAUT;
+        this.inventaire = Constante.INVENTAIRE_DEFAUT;
+        this.notePerso = Constante.NOTEPERSO_DEFAUT;
         this.niveau = Constante.NIVEAU_DEFAUT;
         this.defense = Constante.DEFENSE_DEFAUT;
         this.initiative = Constante.INITIATIVE_DEFAUT;
@@ -47,13 +48,13 @@ public class Perso {
     }
 
     public Perso(int idPerso, String nom, String classe, String race, String description, String inventaire, String notePerso, int niveau, int defense, int initiative, int FOR, int DEX, int CON, int INT, int SAG, int CHA) {
-        IdPerso = idPerso;
-        Nom = nom;
-        Classe = classe;
-        Race = race;
-        Description = description;
-        Inventaire = inventaire;
-        NotePerso = notePerso;
+        this.idPerso = idPerso;
+        this.nom = nom;
+        this.classe = classe;
+        this.race = race;
+        this.description = description;
+        this.inventaire = inventaire;
+        this.notePerso = notePerso;
         this.niveau = niveau;
         this.defense = defense;
         this.initiative = initiative;
@@ -66,31 +67,31 @@ public class Perso {
     }
 
     public int getIdPerso() {
-        return this.IdPerso;
+        return this.idPerso;
     }
 
     public String getNom() {
-        return this.Nom;
+        return this.nom;
     }
 
     public String getClasse() {
-        return this.Classe;
+        return this.classe;
     }
 
     public String getRace() {
-        return this.Race;
+        return this.race;
     }
 
     public String getDescription() {
-        return this.Description;
+        return this.description;
     }
 
     public String getInventaire() {
-        return this.Inventaire;
+        return this.inventaire;
     }
 
     public String getNotePerso() {
-        return this.NotePerso;
+        return this.notePerso;
     }
 
     public int getNiveau() {
@@ -130,31 +131,31 @@ public class Perso {
     }
 
     public void setIdPerso(int idPerso) {
-        IdPerso = idPerso;
+        this.idPerso = idPerso;
     }
 
     public void setNom(String nom) {
-        Nom = nom;
+        this.nom = nom;
     }
 
     public void setClasse(String classe) {
-        Classe = classe;
+        this.classe = classe;
     }
 
     public void setRace(String race) {
-        Race = race;
+        this.race = race;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public void setInventaire(String inventaire) {
-        Inventaire = inventaire;
+        this.inventaire = inventaire;
     }
 
     public void setNotePerso(String notePerso) {
-        NotePerso = notePerso;
+        this.notePerso = notePerso;
     }
 
     public void setNiveau(int niveau) {
@@ -197,13 +198,13 @@ public class Perso {
     @Override
     public String toString() {
         return "Perso{" +
-                "IdPerso=" + IdPerso +
-                ", Nom='" + Nom + '\'' +
-                ", Classe='" + Classe + '\'' +
-                ", Race='" + Race + '\'' +
-                ", Description='" + Description + '\'' +
-                ", Inventaire='" + Inventaire + '\'' +
-                ", NotePerso='" + NotePerso + '\'' +
+                "idPerso=" + idPerso +
+                ", nom='" + nom + '\'' +
+                ", classe='" + classe + '\'' +
+                ", race='" + race + '\'' +
+                ", description='" + description + '\'' +
+                ", inventaire='" + inventaire + '\'' +
+                ", notePerso='" + notePerso + '\'' +
                 ", niveau=" + niveau +
                 ", defense=" + defense +
                 ", initiative=" + initiative +

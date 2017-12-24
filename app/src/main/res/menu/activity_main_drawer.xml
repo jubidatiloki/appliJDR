@@ -11,13 +11,13 @@
 
         <item
             android:id="@+id/nav_layout_perso1"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Personnage n°1" />
+            android:icon="@drawable/ic_dice"
+            android:title="Personnage" />
 
         <item
             android:id="@+id/nav_layout_perso2"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Personnage n°2" />
+            android:icon="@drawable/ic_dice"
+            android:title="A virer" />
 
     </group>
 

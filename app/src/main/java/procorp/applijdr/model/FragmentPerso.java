@@ -1,7 +1,10 @@
 package procorp.applijdr.model;
 
+import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,16 +14,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import procorp.applijdr.Couple;
-import procorp.applijdr.listage.*;
 import procorp.applijdr.FragmentPopup;
-import procorp.applijdr.R;
-import procorp.applijdr.listage.RecyclerTouchListener;
+import procorp.applijdr.MainActivity;
 import procorp.applijdr.database.MaBaseSQLite;
+import procorp.applijdr.listage.*;
+import procorp.applijdr.R;
 import procorp.applijdr.database.Perso;
 import procorp.applijdr.database.PersoManager;
 
@@ -28,24 +34,36 @@ import procorp.applijdr.database.PersoManager;
  * Created by benja on 23/11/2017.
  */
 
-public class FragmentPerso1 extends Fragment {
-    View myView;
+public class FragmentPerso extends Activity {
     private List<Couple> coupleList = new ArrayList<>();
     private RecyclerView recyclerView;
     private PersoAdapter persoAdapter;
-    Perso perso;
     Couple couple;
+    Perso perso;
+    private String idPerso;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.layout_perso1, container, false);
-
-        final PersoManager persoManager = new PersoManager(this.getActivity().getBaseContext());
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout_perso);
+        PersoManager persoManager = new PersoManager(this);
         persoManager.open();
-        perso = persoManager.getPersoById(1);
 
-        recyclerView = myView.findViewById(R.id.recycler_view);
+        // intent
+        final Intent intent = getIntent();
+        if(intent.getStringExtra(FragmentChoix.EXTRA_MESSAGE)!=null) {
+            idPerso = intent.getStringExtra(FragmentChoix.EXTRA_MESSAGE);
+        }
+        if(idPerso.equals("+")){
+            perso = new Perso(persoManager.nbrePerso());
+            perso.setNom(perso.getNom()+Integer.toString(perso.getIdPerso()));
+            persoManager.insertPerso(this.perso);
+        }else{
+            perso = persoManager.getPersoById(Integer.parseInt(idPerso));
+        }
+
+
+        recyclerView = findViewById(R.id.recycler_view);
 
         persoAdapter = new PersoAdapter(coupleList);
 
@@ -53,8 +71,7 @@ public class FragmentPerso1 extends Fragment {
 
         // vertical RecyclerView
         // keep movie_list_row.xml width to `match_parent`
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this.getActivity().getBaseContext());
-
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
 
         // horizontal RecyclerView
         // keep movie_list_row.xml width to `wrap_content`
@@ -63,7 +80,7 @@ public class FragmentPerso1 extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
 
         // adding inbuilt divider line
-        recyclerView.addItemDecoration(new DividerItemDecoration(myView.getContext(), LinearLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
         // adding custom divider line with padding 16dp
         // recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL, 16));
@@ -72,12 +89,12 @@ public class FragmentPerso1 extends Fragment {
         recyclerView.setAdapter(persoAdapter);
 
         // row click listener
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this.getActivity().getBaseContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Couple couple = coupleList.get(position);
                 DialogFragment dialog = new FragmentPopup();
-                dialog.show(getFragmentManager(), couple.getTag()+" 1 " + couple.getTag() + " " + couple.getLibelle());
+                dialog.show(getFragmentManager(), couple.getTag()+";"+idPerso+";" + couple.getLibelle());
             }
 
             @Override
@@ -86,12 +103,14 @@ public class FragmentPerso1 extends Fragment {
             }
         }));
 
+
         prepareCoupleData();
 
-        return myView;
     }
 
     private void prepareCoupleData() {
+        couple = new Couple("Retour", "retour à l'écran des choix", "retour");
+        coupleList.add(couple);
         couple = new Couple("nom: ", perso.getNom(), MaBaseSQLite.COL_NOM);
         coupleList.add(couple);
         couple = new Couple("classe: ", perso.getClasse(), MaBaseSQLite.COL_CLASSE);
@@ -123,9 +142,9 @@ public class FragmentPerso1 extends Fragment {
         couple = new Couple("CHARISME: ", Integer.toString(perso.getCHA()), MaBaseSQLite.COL_CHA);
         coupleList.add(couple);
 
+
         // notify adapter about data set changes
         // so that it will render the list with new data
         persoAdapter.notifyDataSetChanged();
     }
-
 }

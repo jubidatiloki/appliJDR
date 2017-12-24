@@ -73,7 +73,7 @@ public class FragmentPerso2 extends Fragment {
             public void onClick(View view, int position) {
                 Couple couple = coupleList.get(position);
                 DialogFragment dialog = new FragmentPopup();
-                dialog.show(getFragmentManager(), couple.getTag()+" 2 "+ couple.getTag() + " " + couple.getLibelle());
+                dialog.show(getFragmentManager(), couple.getTag()+"ù2ù" + couple.getLibelle());
             }
 
             @Override

@@ -7,8 +7,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +15,7 @@ import android.widget.Toast;
 import procorp.applijdr.database.Perso;
 import procorp.applijdr.database.PersoManager;
 import procorp.applijdr.model.FragmentAccueil;
-import procorp.applijdr.model.FragmentPerso1;
+import procorp.applijdr.model.FragmentChoix;
 import procorp.applijdr.model.FragmentPerso2;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //On ouvre la base de données pour écrire dedans
         persoManager.open();
+        //Toast.makeText(this, persoManager.getPersoByNom("brigitte").toString(), Toast.LENGTH_SHORT).show();
 
         //initialisation premier lancement
         if(premierLancement()) {
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(id == R.id.naw_accueil){
             fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentAccueil()).commit();
         }else if(id == R.id.nav_layout_perso1) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentPerso1()).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentChoix()).commit();
         } else if (id == R.id.nav_layout_perso2) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentPerso2()).commit();
         }
@@ -113,12 +112,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void initialisation(){
-        this.perso = new Perso(1);
+        this.perso = new Perso(persoManager.nbrePerso());
+        perso.setNom(perso.getNom()+Integer.toString(perso.getIdPerso()));
         this.persoManager.insertPerso(this.perso);
-        //Toast.makeText(this, "nbre(1): " + persoManager.nbrePerso(), Toast.LENGTH_LONG).show();
-        this.perso = new Perso(2);
+        Toast.makeText(this, "nbre(1): " + persoManager.nbrePerso(), Toast.LENGTH_LONG).show();
+
+        this.perso = new Perso(persoManager.nbrePerso());
+        perso.setNom(perso.getNom()+Integer.toString(perso.getIdPerso()));
         this.persoManager.insertPerso(perso);
-        //Toast.makeText(this, "nbre(2): " + persoManager.nbrePerso(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "nbre(2): " + persoManager.nbrePerso(), Toast.LENGTH_LONG).show();
     }
 
 }

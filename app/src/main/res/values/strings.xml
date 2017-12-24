@@ -5,4 +5,14 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string-array name="stats_spinner">
+        <item>FOR</item>
+        <item>DEX</item>
+        <item>CON</item>
+        <item>INT</item>
+        <item>SAG</item>
+        <item>CHA</item>
+    </string-array>
+
 </resources>
