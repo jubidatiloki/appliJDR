@@ -3,7 +3,6 @@ package procorp.applijdr;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +13,9 @@ import android.widget.Toast;
 
 import procorp.applijdr.database.Perso;
 import procorp.applijdr.database.PersoManager;
+import procorp.applijdr.listage.PersoAdapter;
 import procorp.applijdr.model.FragmentChoix;
 import procorp.applijdr.model.FragmentPerso;
-import procorp.applijdr.model.FragmentPerso2;
 
 /**
  * Created by benja on 15/12/2017.
@@ -37,7 +36,7 @@ public class FragmentPopup extends DialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         input = new EditText(getActivity());
-        list = getTag().split(";");
+        list = getTag().trim().split(";");
         if(getActivity().getIntent()!=null){
             String message = getActivity().getIntent().getStringExtra(this.EXTRA_MESSAGE);
         }

@@ -16,7 +16,6 @@ import procorp.applijdr.database.Perso;
 import procorp.applijdr.database.PersoManager;
 import procorp.applijdr.model.FragmentAccueil;
 import procorp.applijdr.model.FragmentChoix;
-import procorp.applijdr.model.FragmentPerso2;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -94,8 +93,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentAccueil()).commit();
         }else if(id == R.id.nav_layout_perso1) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentChoix()).commit();
-        } else if (id == R.id.nav_layout_perso2) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentPerso2()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
