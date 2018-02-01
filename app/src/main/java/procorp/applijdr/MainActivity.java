@@ -109,15 +109,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void initialisation(){
-        this.perso = new Perso(persoManager.nbrePerso());
+        this.perso = new Perso();
         perso.setNom(perso.getNom()+Integer.toString(perso.getIdPerso()));
         this.persoManager.insertPerso(this.perso);
-        Toast.makeText(this, "nbre(1): " + persoManager.nbrePerso(), Toast.LENGTH_LONG).show();
 
         this.perso = new Perso(persoManager.nbrePerso());
         perso.setNom(perso.getNom()+Integer.toString(perso.getIdPerso()));
         this.persoManager.insertPerso(perso);
-        Toast.makeText(this, "nbre(2): " + persoManager.nbrePerso(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "création de deux perso", Toast.LENGTH_LONG).show();
     }
 
 }

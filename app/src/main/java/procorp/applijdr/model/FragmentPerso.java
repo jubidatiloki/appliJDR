@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.TestLooperManager;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -36,115 +37,225 @@ import procorp.applijdr.database.PersoManager;
 
 public class FragmentPerso extends Activity {
     private List<Couple> coupleList = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private PersoAdapter persoAdapter;
-    Couple couple;
+    private TextView t_nom;
+    private TextView t_classe;
+    private TextView t_race;
+    private TextView t_pv;
+    private TextView t_pvmax;
+    private TextView t_niveau;
+    private TextView t_defense;
+    private TextView t_initiative;
+    private TextView t_for;
+    private TextView t_dex;
+    private TextView t_con;
+    private TextView t_int;
+    private TextView t_sag;
+    private TextView t_cha;
+    private TextView t_description;
+    private TextView t_inventaire;
+    private TextView t_noteperso;
     Perso perso;
     private String idPerso;
+    private PersoManager persoManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_perso);
-        PersoManager persoManager = new PersoManager(this);
+        persoManager = new PersoManager(this);
         persoManager.open();
+
+        t_nom = findViewById(R.id.t_nom);
+        t_classe = findViewById(R.id.t_classe);
+        t_race = findViewById(R.id.t_race);
+        t_pv = findViewById(R.id.t_pv);
+        t_pvmax = findViewById(R.id.t_pvmax);
+        t_niveau = findViewById(R.id.t_niveau);
+        t_defense = findViewById(R.id.t_defense);
+        t_initiative = findViewById(R.id.t_initiative);
+        t_for = findViewById(R.id.t_for);
+        t_dex = findViewById(R.id.t_dex);
+        t_con = findViewById(R.id.t_con);
+        t_int = findViewById(R.id.t_int);
+        t_sag = findViewById(R.id.t_sag);
+        t_cha = findViewById(R.id.t_cha);
+        t_description = findViewById(R.id.t_description);
+        t_inventaire = findViewById(R.id.t_inventaire);
+        t_noteperso = findViewById(R.id.t_noteperso);
 
         // intent
         final Intent intent = getIntent();
         if(intent.getStringExtra(FragmentChoix.EXTRA_MESSAGE)!=null) {
             idPerso = intent.getStringExtra(FragmentChoix.EXTRA_MESSAGE);
         }
-        if(idPerso.equals("+")){
-            perso = new Perso(persoManager.nbrePerso());
-            perso.setNom(perso.getNom()+Integer.toString(perso.getIdPerso()));
-            persoManager.insertPerso(this.perso);
+        if(idPerso.equals("tag")){
+            this.perso = new Perso();
+            this.persoManager.insertPerso(this.perso);
+
         }else{
             perso = persoManager.getPersoById(Integer.parseInt(idPerso));
         }
 
 
-        recyclerView = findViewById(R.id.recycler_view);
+        t_nom.setText("nom:" + perso.getNom());
+        t_classe.setText("classe:" + perso.getClasse());
+        t_race.setText("race:" + perso.getRace());
+        t_pv.setText("pv:" + perso.getPv());
+        t_pvmax.setText("pvMax:" + perso.getPvMax());
+        t_niveau.setText("niveau:" + perso.getNiveau());
+        t_defense.setText("defense:" + perso.getDefense());
+        t_initiative.setText("init:" + perso.getInitiative());
+        t_for.setText("FOR:" + perso.getFOR());
+        t_dex.setText("DEX:" + perso.getDEX());
+        t_con.setText("CON:" + perso.getCON());
+        t_int.setText("INT:" + perso.getINT());
+        t_sag.setText("SAG:" + perso.getSAG());
+        t_cha.setText("CHA:" + perso.getCHA());
+        t_description.setText("description:" + perso.getDescription());
+        t_inventaire.setText("inventaire:" + perso.getInventaire());
+        t_noteperso.setText("notePerso:" + perso.getNotePerso());
 
-        persoAdapter = new PersoAdapter(coupleList);
 
-        recyclerView.setHasFixedSize(true);
-
-        // vertical RecyclerView
-        // keep movie_list_row.xml width to `match_parent`
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-
-        // horizontal RecyclerView
-        // keep movie_list_row.xml width to `wrap_content`
-        // RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-
-        recyclerView.setLayoutManager(mLayoutManager);
-
-        // adding inbuilt divider line
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-
-        // adding custom divider line with padding 16dp
-        // recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL, 16));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        recyclerView.setAdapter(persoAdapter);
-
-        // row click listener
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Couple couple = coupleList.get(position);
+        t_nom.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 DialogFragment dialog = new FragmentPopup();
-                dialog.show(getFragmentManager(), couple.getTag()+";"+idPerso+";" + couple.getLibelle());
+                String[] liste = t_nom.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
-
-            @Override
             public void onLongClick(View view, int position) {
 
             }
-        }));
+        });
+
+        t_classe.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_classe.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_race.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_race.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_pv.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_pv.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_pvmax.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_pvmax.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_defense.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_defense.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_niveau.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_niveau.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_initiative.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_initiative.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_for.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_for.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_dex.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_dex.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_con.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_con.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_int.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_int.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_sag.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_sag.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_cha.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_cha.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_description.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_description.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_inventaire.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_inventaire.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
+
+        t_noteperso.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DialogFragment dialog = new FragmentPopup();
+                String[] liste = t_noteperso.getText().toString().split(":");
+                dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
+            }
+        });
 
 
-        prepareCoupleData();
 
-    }
-
-    private void prepareCoupleData() {
-        couple = new Couple("Retour", "retour à l'écran des choix", "retour");
-        coupleList.add(couple);
-        couple = new Couple("nom: ", perso.getNom(), MaBaseSQLite.COL_NOM);
-        coupleList.add(couple);
-        couple = new Couple("classe: ", perso.getClasse(), MaBaseSQLite.COL_CLASSE);
-        coupleList.add(couple);
-        couple = new Couple("race: ", perso.getRace(), MaBaseSQLite.COL_RACE);
-        coupleList.add(couple);
-        couple = new Couple("description: ", perso.getDescription(), MaBaseSQLite.COL_DESCRIPTION);
-        coupleList.add(couple);
-        couple = new Couple("inventaire: ", perso.getInventaire(), MaBaseSQLite.COL_INVENTAIRE);
-        coupleList.add(couple);
-        couple = new Couple("note personnelle: ", perso.getNotePerso(), MaBaseSQLite.COL_NOTEPERSO);
-        coupleList.add(couple);
-        couple = new Couple("niveau: ", Integer.toString(perso.getNiveau()), MaBaseSQLite.COL_NIVEAU);
-        coupleList.add(couple);
-        couple = new Couple("défense: ", Integer.toString(perso.getDefense()), MaBaseSQLite.COL_DEFENSE);
-        coupleList.add(couple);
-        couple = new Couple("initiative: ", Integer.toString(perso.getInitiative()), MaBaseSQLite.COL_INITIATIVE);
-        coupleList.add(couple);
-        couple = new Couple("FORCE: ", Integer.toString(perso.getFOR()), MaBaseSQLite.COL_FOR);
-        coupleList.add(couple);
-        couple = new Couple("DEXTERITE: ", Integer.toString(perso.getDEX()), MaBaseSQLite.COL_DEX);
-        coupleList.add(couple);
-        couple = new Couple("CONSTITUTION: ", Integer.toString(perso.getCON()), MaBaseSQLite.COL_CON);
-        coupleList.add(couple);
-        couple = new Couple("INTELLIGENCE: ", Integer.toString(perso.getINT()), MaBaseSQLite.COL_INT);
-        coupleList.add(couple);
-        couple = new Couple("SAGESSE: ", Integer.toString(perso.getSAG()), MaBaseSQLite.COL_SAG);
-        coupleList.add(couple);
-        couple = new Couple("CHARISME: ", Integer.toString(perso.getCHA()), MaBaseSQLite.COL_CHA);
-        coupleList.add(couple);
-
-
-        // notify adapter about data set changes
-        // so that it will render the list with new data
-        persoAdapter.notifyDataSetChanged();
     }
 }

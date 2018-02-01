@@ -12,6 +12,8 @@ public class Perso {
     private String nom;
     private String classe;
     private String race;
+    private int pvMax;
+    private int pv;
     private String description;
     private String inventaire;
     private String notePerso;
@@ -26,13 +28,12 @@ public class Perso {
     private int CHA;
 
 
-    public Perso(){}
-
-    public Perso(int idPerso){
-        this.idPerso = idPerso;
+    public Perso(){
         this.nom = Constante.NOM_DEFAUT;
         this.classe = Constante.CLASSE_DEFAUT;
         this.race = Constante.RACE_DEFAUT;
+        this.pvMax = Constante.PV_DEFAUT;
+        this.pv = Constante.PV_DEFAUT;
         this.description = Constante.DESCRIPTION_DEFAUT;
         this.inventaire = Constante.INVENTAIRE_DEFAUT;
         this.notePerso = Constante.NOTEPERSO_DEFAUT;
@@ -47,11 +48,34 @@ public class Perso {
         this.CHA = Constante.STAT_DEFAUT;
     }
 
-    public Perso(int idPerso, String nom, String classe, String race, String description, String inventaire, String notePerso, int niveau, int defense, int initiative, int FOR, int DEX, int CON, int INT, int SAG, int CHA) {
+    public Perso(int idPerso){
+        this.idPerso = idPerso;
+        this.nom = Constante.NOM_DEFAUT;
+        this.classe = Constante.CLASSE_DEFAUT;
+        this.race = Constante.RACE_DEFAUT;
+        this.pvMax = Constante.PV_DEFAUT;
+        this.pv = Constante.PV_DEFAUT;
+        this.description = Constante.DESCRIPTION_DEFAUT;
+        this.inventaire = Constante.INVENTAIRE_DEFAUT;
+        this.notePerso = Constante.NOTEPERSO_DEFAUT;
+        this.niveau = Constante.NIVEAU_DEFAUT;
+        this.defense = Constante.DEFENSE_DEFAUT;
+        this.initiative = Constante.INITIATIVE_DEFAUT;
+        this.FOR = Constante.STAT_DEFAUT;
+        this.DEX = Constante.STAT_DEFAUT;
+        this.CON = Constante.STAT_DEFAUT;
+        this.INT = Constante.STAT_DEFAUT;
+        this.SAG = Constante.STAT_DEFAUT;
+        this.CHA = Constante.STAT_DEFAUT;
+    }
+
+    public Perso(int idPerso, String nom, String classe, String race, int pv, String description, String inventaire, String notePerso, int niveau, int defense, int initiative, int FOR, int DEX, int CON, int INT, int SAG, int CHA) {
         this.idPerso = idPerso;
         this.nom = nom;
         this.classe = classe;
         this.race = race;
+        this.pvMax = pv;
+        this.pv = pv;
         this.description = description;
         this.inventaire = inventaire;
         this.notePerso = notePerso;
@@ -81,6 +105,10 @@ public class Perso {
     public String getRace() {
         return this.race;
     }
+
+    public int getPvMax() { return this.pvMax; }
+
+    public int getPv() { return this.pv; }
 
     public String getDescription() {
         return this.description;
@@ -146,6 +174,10 @@ public class Perso {
         this.race = race;
     }
 
+    public void setPvMax(int pvMax) { this.pvMax = pvMax; }
+
+    public void setPv(int pv){ this.pv = pv; }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -202,6 +234,8 @@ public class Perso {
                 ", nom='" + nom + '\'' +
                 ", classe='" + classe + '\'' +
                 ", race='" + race + '\'' +
+                ", pvMax='" + pvMax + '\'' +
+                ", pv='" + pv + '\'' +
                 ", description='" + description + '\'' +
                 ", inventaire='" + inventaire + '\'' +
                 ", notePerso='" + notePerso + '\'' +

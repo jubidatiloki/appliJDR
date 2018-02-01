@@ -16,6 +16,8 @@ public class MaBaseSQLite extends SQLiteOpenHelper {
     public static final String COL_NOM = "nom";
     public static final String COL_CLASSE = "classe";
     public static final String COL_RACE = "race";
+    public static final String COL_PVMAX = "pvMax";
+    public static final String COL_PV = "pv";
     public static final String COL_DESCRIPTION = "description";
     public static final String COL_INVENTAIRE = "inventaire";
     public static final String COL_NOTEPERSO = "notePerso";
@@ -34,10 +36,12 @@ public class MaBaseSQLite extends SQLiteOpenHelper {
     //rang
 
     private static final String CREATE_TABLE_PERSO = "CREATE TABLE " + TABLE_PERSO + " ( "
-            + COL_IDPERSO + " INTEGER PRIMARY KEY, "
+            + COL_IDPERSO + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COL_NOM + " TEXT, "
             + COL_CLASSE + " TEXT, "
             + COL_RACE + " TEXT, "
+            + COL_PVMAX + " INTEGER, "
+            + COL_PV + " INTEGER, "
             + COL_DESCRIPTION + " TEXT, "
             + COL_INVENTAIRE + " TEXT, "
             + COL_NOTEPERSO + " TEXT, "

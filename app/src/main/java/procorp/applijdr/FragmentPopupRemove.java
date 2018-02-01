@@ -51,10 +51,9 @@ public class FragmentPopupRemove extends DialogFragment {
 
     private final class okOnClickListener implements  DialogInterface.OnClickListener {
         public void onClick(DialogInterface dialog, int id) {
-            persoManager.removePersoWithID(Integer.parseInt(list[1]));
+            persoManager.removePersoWithID(Integer.parseInt(list[2]));
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, new FragmentChoix()).commit();
-
         }
     }
 
