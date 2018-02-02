@@ -1,5 +1,7 @@
 package procorp.applijdr.database;
 
+import procorp.applijdr.Constante;
+
 /**
  * Created by benja on 15/12/2017.
  */
@@ -9,7 +11,9 @@ public class Voie {
     private int idVoie;
     private String nomVoie;
 
-    public Voie(){}
+    public Voie(){
+        this.nomVoie = Constante.NOM_VOIE_DEFAUT;
+    }
 
     public Voie(int idVoie, String nomVoie) {
         this.idVoie = idVoie;

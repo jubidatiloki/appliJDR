@@ -7,7 +7,7 @@ package procorp.applijdr;
 public class Constante {
 
 
-
+    //perso
     public static final String NOM_DEFAUT = "brigitte";
     public static final String CLASSE_DEFAUT = "chevalier";
     public static final String RACE_DEFAUT = "péon";
@@ -20,6 +20,12 @@ public class Constante {
     public static final int INITIATIVE_DEFAUT = 10;
     public static final int STAT_DEFAUT = 10;
 
-    public static final String LIB_VOIE_DEFAUT = "lib voie";
+    //voie
+    public static final String NOM_VOIE_DEFAUT = "newVoie";
+
+
+    //rang
+    public static final String NOM_RANG_DEFAUT = "newRang";
     public static final String LIB_RANG_DEFAUT = "lib rang";
+    public static final int NIVEAU_RANG_DEFAUT = 1;
 }

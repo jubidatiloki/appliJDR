@@ -162,7 +162,6 @@ public class PersoManager {
         return bdd.update(TABLE_PERSO, values, COL_IDPERSO + " = " + perso.getIdPerso(), null);
     }
 
-    //inutile mais on sait jamais
     public void removePersoWithID(int id){
         //Suppression d'une commande de la BDD grâce à l'ID
         bdd.delete(TABLE_PERSO, COL_IDPERSO + " = " +id, null);

@@ -1,31 +1,32 @@
 package procorp.applijdr.database;
 
+import procorp.applijdr.Constante;
+
 /**
  * Created by benja on 15/12/2017.
  */
 
 public class Rang {
 
-    private int idVoie;
     private int idRang;
     private String nomRang;
     private String libRang;
     private int niveauRang;
 
 
-    public Rang(){}
+    public Rang(){
+        this.nomRang = Constante.NOM_RANG_DEFAUT;
+        this.libRang = Constante.LIB_RANG_DEFAUT;
+        this.niveauRang = Constante.NIVEAU_RANG_DEFAUT;
+    }
 
-    public Rang(int idVoie, int idRang, String nomRang, String libRang, int niveauRang){
-        this.idVoie = idVoie;
+    public Rang(int idRang, String nomRang, String libRang, int niveauRang){
         this.idRang = idRang;
         this.nomRang = nomRang;
         this.libRang = libRang;
         this.niveauRang = niveauRang;
     }
 
-    public int getIdVoie() {
-        return idVoie;
-    }
 
     public int getIdRang() {
         return idRang;
@@ -43,9 +44,6 @@ public class Rang {
         return niveauRang;
     }
 
-    public void setIdVoie(int idVoie) {
-        this.idVoie = idVoie;
-    }
 
     public void setIdRang(int idRang) {
         this.idRang = idRang;
@@ -66,7 +64,6 @@ public class Rang {
     @Override
     public String toString() {
         return "Rang{" +
-                "idVoie=" + idVoie +
                 ", idRang=" + idRang +
                 ", nomRang='" + nomRang + '\'' +
                 ", libRang='" + libRang + '\'' +

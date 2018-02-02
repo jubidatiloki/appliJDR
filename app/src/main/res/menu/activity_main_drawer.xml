@@ -14,6 +14,15 @@
             android:icon="@drawable/ic_dice"
             android:title="Personnage" />
 
+       <item
+           android:id="@+id/nav_layout_voie"
+           android:icon="@drawable/ic_dice"
+           android:title="Voie" />
+
+        <item
+            android:id="@+id/nav_layout_rang"
+            android:icon="@drawable/ic_dice"
+            android:title="Rang" />
 
     </group>
 

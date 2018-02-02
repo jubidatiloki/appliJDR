@@ -10,20 +10,18 @@ import android.view.ViewGroup;
 import procorp.applijdr.R;
 
 /**
- * Created by benja on 23/11/2017.
+ * Created by benja on 02/02/2018.
  */
 
-public class FragmentAccueil extends Fragment {
-    View myView;
+public class FragmentRang extends Fragment {
+
+    private View myView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.layout_accueil, container, false);
-
+        myView = inflater.inflate(R.layout.layout_rang, container, false);
 
         return myView;
     }
-
-
 }
