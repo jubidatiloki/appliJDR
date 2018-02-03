@@ -2,31 +2,16 @@ package procorp.applijdr.model;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.TestLooperManager;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import procorp.applijdr.Couple;
-import procorp.applijdr.FragmentPopup;
-import procorp.applijdr.MainActivity;
-import procorp.applijdr.database.MaBaseSQLite;
-import procorp.applijdr.listage.*;
+import procorp.applijdr.FragmentPopupPerso;
 import procorp.applijdr.R;
 import procorp.applijdr.database.Perso;
 import procorp.applijdr.database.PersoManager;
@@ -118,7 +103,7 @@ public class FragmentPerso extends Activity {
 
         t_nom.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_nom.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -129,7 +114,7 @@ public class FragmentPerso extends Activity {
 
         t_classe.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_classe.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -137,7 +122,7 @@ public class FragmentPerso extends Activity {
 
         t_race.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_race.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -145,7 +130,7 @@ public class FragmentPerso extends Activity {
 
         t_pv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_pv.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -153,7 +138,7 @@ public class FragmentPerso extends Activity {
 
         t_pvmax.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_pvmax.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -161,7 +146,7 @@ public class FragmentPerso extends Activity {
 
         t_defense.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_defense.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -169,7 +154,7 @@ public class FragmentPerso extends Activity {
 
         t_niveau.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_niveau.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -177,7 +162,7 @@ public class FragmentPerso extends Activity {
 
         t_initiative.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_initiative.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -185,7 +170,7 @@ public class FragmentPerso extends Activity {
 
         t_for.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_for.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -193,7 +178,7 @@ public class FragmentPerso extends Activity {
 
         t_dex.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_dex.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -201,7 +186,7 @@ public class FragmentPerso extends Activity {
 
         t_con.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_con.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -209,7 +194,7 @@ public class FragmentPerso extends Activity {
 
         t_int.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_int.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -217,7 +202,7 @@ public class FragmentPerso extends Activity {
 
         t_sag.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_sag.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -225,7 +210,7 @@ public class FragmentPerso extends Activity {
 
         t_cha.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_cha.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -233,7 +218,7 @@ public class FragmentPerso extends Activity {
 
         t_description.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_description.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -241,7 +226,7 @@ public class FragmentPerso extends Activity {
 
         t_inventaire.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_inventaire.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }
@@ -249,7 +234,7 @@ public class FragmentPerso extends Activity {
 
         t_noteperso.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DialogFragment dialog = new FragmentPopup();
+                DialogFragment dialog = new FragmentPopupPerso();
                 String[] liste = t_noteperso.getText().toString().split(":");
                 dialog.show(getFragmentManager(), liste[0] + ";" + liste[1] + ";" + perso.getIdPerso());
             }

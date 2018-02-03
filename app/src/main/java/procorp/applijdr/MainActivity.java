@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import procorp.applijdr.database.Perso;
 import procorp.applijdr.database.PersoManager;
+import procorp.applijdr.database.Voie;
+import procorp.applijdr.database.VoieManager;
 import procorp.applijdr.model.FragmentAccueil;
 import procorp.applijdr.model.FragmentChoix;
 import procorp.applijdr.model.FragmentRang;
@@ -22,8 +24,10 @@ import procorp.applijdr.model.FragmentVoie;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private PersoManager persoManager = new PersoManager(this);
+    private VoieManager voieManager = new VoieManager(this);
 
     private Perso perso;
+    private Voie voie;
 
 
     @Override
@@ -43,7 +47,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //On ouvre la base de données pour écrire dedans
         persoManager.open();
-        //Toast.makeText(this, persoManager.getPersoByNom("brigitte").toString(), Toast.LENGTH_SHORT).show();
+        voieManager.open();
+
 
         //initialisation premier lancement
         if(premierLancement()) {
@@ -123,6 +128,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         perso.setNom(perso.getNom()+Integer.toString(perso.getIdPerso()));
         this.persoManager.insertPerso(perso);
         Toast.makeText(this, "création de deux perso", Toast.LENGTH_LONG).show();
+
+        this.voie = new Voie();
+        this.voie.setNomVoie(Constante.NOM_VOIE_DEFAUT+this.voie.getIdVoie());
+        this.voieManager.insertVoie(this.voie);
+        Toast.makeText(this, "création d\'une voie", Toast.LENGTH_SHORT).show();
     }
 
 }

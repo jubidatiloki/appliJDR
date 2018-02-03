@@ -3,6 +3,7 @@ package procorp.applijdr;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +13,14 @@ import android.widget.EditText;
 
 import procorp.applijdr.database.Perso;
 import procorp.applijdr.database.PersoManager;
+import procorp.applijdr.model.FragmentChoix;
 import procorp.applijdr.model.FragmentPerso;
 
 /**
  * Created by benja on 15/12/2017.
  */
 
-public class FragmentPopup extends DialogFragment {
+public class FragmentPopupPerso extends DialogFragment {
 
     private PersoManager persoManager;
     private String[] list;
@@ -26,7 +28,7 @@ public class FragmentPopup extends DialogFragment {
     private EditText input;
     public final static String EXTRA_MESSAGE = "procorp.applijdr.model.MESSAGE";
 
-    public FragmentPopup(){}
+    public FragmentPopupPerso(){}
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

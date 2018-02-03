@@ -95,4 +95,9 @@ public class VoieManager {
         return cursorToVoie(c);
     }
 
+    public Cursor getAllVoie(){
+        Cursor c = bdd.query(TABLE_VOIE, new String[] {COL_IDVOIE, COL_NOMVOIE}, null, null, null, null, null);
+        return c;
+    }
+
 }

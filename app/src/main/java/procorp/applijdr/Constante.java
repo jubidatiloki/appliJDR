@@ -21,11 +21,11 @@ public class Constante {
     public static final int STAT_DEFAUT = 10;
 
     //voie
-    public static final String NOM_VOIE_DEFAUT = "newVoie";
+    public static final String NOM_VOIE_DEFAUT = "defaut";
 
 
     //rang
-    public static final String NOM_RANG_DEFAUT = "newRang";
-    public static final String LIB_RANG_DEFAUT = "lib rang";
+    public static final String NOM_RANG_DEFAUT = "defaut";
+    public static final String LIB_RANG_DEFAUT = "description du rang";
     public static final int NIVEAU_RANG_DEFAUT = 1;
 }
